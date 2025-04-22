@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}إدخال بيانات المستخدم{% endblock %}
+
+{% block content %}
+    <h1>نموذج بيانات المستخدم</h1>
+
+    <!-- Form submits to the same URL ('/form') using POST -->
+    <form action="{{ url_for('form') }}" method="post" novalidate> <!-- novalidate prevents browser default validation bubbles -->
+
+        <!-- حقل الرقم القومي -->
+        <div class="form-group">
+            <label for="national_id">الرقم القومي:</label>
+            <input type="text"
+                   id="national_id"
+                   name="national_id"
+                   placeholder="ادخل 14 رقماً"
+                   maxlength="14"
+                   pattern="[0-9]{14}"
+                   required
+                   title="يجب إدخال 14 رقماً بالضبط"
+                   value="{{ nid or '' }}"> <!-- Display previous value on error -->
+        </div>
+
+        <!-- قائمة الحالة الزوجية المنسدلة -->
+        <div class="form-group">
+            <label for="marital_status">الحالة الزوجية:</label>
+            <select id="marital_status" name="marital_status" required>
+                <option value="" {% if not ms %}selected{% endif %} disabled>-- اختر الحالة --</option>
+                <option value="اعزب" {% if ms == 'اعزب' %}selected{% endif %}>أعزب</option>
+                <option value="متزوج" {% if ms == 'متزوج' %}selected{% endif %}>متزوج</option>
+                <option value="مطلق" {% if ms == 'مطلق' %}selected{% endif %}>مطلق</option>
+                <option value="ارمل" {% if ms == 'ارمل' %}selected{% endif %}>أرمل</option>
+            </select>
+        </div>
+
+        <!-- زر الإرسال -->
+        <button type="submit" class="btn btn-block mt-3">إرسال البيانات</button>
+
+    </form>
+{% endblock %}

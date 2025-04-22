@@ -1,0 +1,16 @@
+Flask
+# gunicorn # ليس ضروريًا بشكل مباشر لـ PythonAnywhere WSGI لكن لا يضر وجوده
+# يمكنك إضافة أي مكتبات أخرى استخدمتها
+Click>=7.0    # غالبًا ما تكون تبعية لـ Flask
+itsdangerous>=1.1.0 # تبعية لـ Flask
+Jinja2>=2.10.1 # تبعية لـ Flask
+MarkupSafe>=1.1.1 # تبعية لـ Flask
+Werkzeug>=0.15.1 # تبعية لـ Flask
+blinker==1.9.0
+click==8.1.8
+colorama==0.4.6
+Flask==3.1.0
+itsdangerous==2.2.0
+Jinja2==3.1.6
+MarkupSafe==3.0.2
+Werkzeug==3.1.3

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}عرض البيانات المدخلة{% endblock %}
+
+{% block content %}
+    <h1>البيانات المدخلة</h1>
+
+    {% if all_entries %}
+        <p>هذه هي جميع البيانات التي تم إدخالها (مخزنة مؤقتاً في ذاكرة الخادم):</p>
+        <div class="table-responsive"> <!-- Make table scroll on small screens -->
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>الرقم القومي</th>
+                        <th>الحالة الزوجية</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in all_entries %}
+                    <tr>
+                        <td>{{ loop.index }}</td> <!-- رقم تسلسلي -->
+                        <td>{{ entry.national_id }}</td>
+                        <td>{{ entry.marital_status }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-center" style="color: var(--secondary-color);">لم يتم إدخال أي بيانات بعد.</p>
+        <div class="text-center mt-3">
+             <a href="{{ url_for('form') }}" class="btn">اذهب لصفحة الإدخال</a>
+        </div>
+    {% endif %}
+{% endblock %}
